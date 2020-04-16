@@ -4,6 +4,10 @@ export interface UserFormDetails {
   comments: string;
 }
 
+export interface SortAnswer {
+  [key: string]: AnswerResponse[];
+}
+
 export enum CurrentPage {
   UserForm = "UserForm",
   PreviousAnswers = "PreviousAnswers",

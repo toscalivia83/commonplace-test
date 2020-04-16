@@ -2,3 +2,8 @@
   border: 1px solid black;
   margin: 10px 250px;
 }
+
+.answerItem {
+  border: 0.5px solid grey;
+  margin: 5px;
+}
