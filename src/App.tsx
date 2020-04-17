@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import UserForm from "./components/UserForm/UserForm";
 import ApiClient from "./service/ApiClient";
@@ -26,7 +26,7 @@ const App = (): React.ReactElement => {
     }
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     async function fetchData(): Promise<void> {
       const optionsResponse = await ApiClient.getOptions();
       setOptions(optionsResponse.result?.options || [] as string[]);

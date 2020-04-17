@@ -33,8 +33,10 @@ const UserForm = ({ options, handleSubmit }: UserFormProps): React.ReactElement 
 
   const handleSubmitClick = async (event: React.MouseEvent<HTMLButtonElement>): Promise<void> => {
     event.preventDefault();
+
     const errorMessages = getErrorMessages(userFormDetails);
     setErrorMessages(errorMessages);
+
     if (errorMessages.length === 0) {
       await handleSubmit(userFormDetails);
     }
@@ -58,7 +60,9 @@ const UserForm = ({ options, handleSubmit }: UserFormProps): React.ReactElement 
             type="email"
             placeholder="Please type a valid email address..."
             value={userFormDetails.emailAddress}
-            onChange={(event: React.FormEvent<HTMLInputElement>): void => onChange("emailAddress", event.currentTarget.value)}
+            onChange={(event: React.ChangeEvent<HTMLInputElement>): void => {
+              onChange("emailAddress", event.target.value);
+            }}
             className={styles.inputField}/>
         </div>
 
@@ -78,12 +82,12 @@ const UserForm = ({ options, handleSubmit }: UserFormProps): React.ReactElement 
         <div className={styles.formItem}>
           <label className={styles.label}>Do you have any comments on the above?</label>
           <textarea
-            onChange={(event): void => onChange("comments", event.currentTarget.value)}
+            onChange={(event): void => onChange("comments", event.target.value)}
             className={styles.textarea}></textarea>
         </div>
       </form>
       <button onClick={handleSubmitClick}>Submit your answers</button>
-      {errorMessages.length > 0 && errorMessages.map((errorMessage, index) => <div key={index}>{errorMessage}</div>)}
+      {errorMessages.length > 0 && errorMessages.map((errorMessage, index) => <div key={index} className={styles.error}>{errorMessage}</div>)}
     </div>
   );
 };
